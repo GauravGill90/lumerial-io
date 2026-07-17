@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-deep: #04040a;
+  --bg-base: #080810;
+  --bg-elevated: #0d0d1a;
+  --surface: rgba(255 255 255 / 0.04);
+  --surface-hover: rgba(255 255 255 / 0.07);
+  --foreground: #ededef;
+  --foreground-muted: #8a8f98;
+  --accent: #6366f1;
+  --accent-soft: rgba(99 102 241 / 0.15);
+  --accent-glow: rgba(99 102 241 / 0.25);
+  --border: rgba(255 255 255 / 0.08);
+  --border-strong: rgba(255 255 255 / 0.14);
+  --radius: 16px;
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  font-family: var(--font-body, "DM Sans", sans-serif);
+  background-color: var(--bg-base);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading, "Space Grotesk", sans-serif);
+}
+
+@layer utilities {
+  .glass {
+    background: var(--surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+  }
+
+  .glass-strong {
+    background: rgba(255 255 255 / 0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-strong);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(99 102 241 / 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #fff 0%, rgba(255 255 255 / 0.65) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
