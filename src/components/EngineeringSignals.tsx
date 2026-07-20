@@ -1,178 +1,201 @@
 "use client";
 
-const suggestions = [
+const signals = [
   {
-    theme: "Slow checkout flow",
-    volume: "847 signals",
-    source: "App Store + Zendesk",
-    engineeringSuggestion: "API p95 latency on /api/checkout exceeds 3s. Recommend adding Redis cache for cart hydration and moving tax calc to background job.",
-    priority: "critical",
+    theme: "Slow checkout",
+    volume: "40 signals",
+    window: "last 7 days",
+    sources: ["App Store", "Zendesk"],
+    priority: "high",
+    pattern:
+      "Reviews mention slow or broken checkout concentrated in iOS 17.4 users. Zendesk tickets show same cohort escalating within 24h of install.",
+    suggestion:
+      "Likely area: payment flow or cart API. Connect Sentry or Datadog to confirm root cause and get stack-level pinpointing.",
+    telemetry: false,
     effort: "M",
   },
   {
-    theme: "Search returns wrong results",
-    volume: "412 signals",
-    source: "Google Play + Reddit",
-    engineeringSuggestion: "Search index stale by ~6h due to indexing queue backlog. Increase worker concurrency or switch to real-time webhook-driven indexing.",
-    priority: "high",
+    theme: "Search feels outdated",
+    volume: "28 signals",
+    window: "last 7 days",
+    sources: ["Google Play", "Reddit"],
+    priority: "medium",
+    pattern:
+      "Users describe results as 'stale' or 'not relevant' — language clusters around recency, not relevance. Pattern consistent across Android and web.",
+    suggestion:
+      "Likely area: index freshness or ranking model. Connect Datadog APM to confirm whether index lag correlates with complaint spikes.",
+    telemetry: false,
     effort: "S",
   },
   {
-    theme: "Onboarding confusion",
-    volume: "293 signals",
-    source: "Intercom + Surveys",
-    engineeringSuggestion: "Step 3 in onboarding flow has no input validation feedback. Add inline error state and consider pre-filling from OAuth profile data.",
-    priority: "medium",
+    theme: "Crash on export (iOS)",
+    volume: "19 signals",
+    window: "last 48 hours",
+    sources: ["App Store", "Sentry"],
+    priority: "critical",
+    pattern:
+      "Sentry reports 34 unhandled exceptions in ExportManager.swift correlated with App Store reviews mentioning 'crashes when I try to export'. Error rate up 3× since v2.4.1.",
+    suggestion:
+      "ExportManager.swift line 214 — nil force-unwrap on optional fileURL. Reproduced on iOS 16.4+. Fix: guard let fileURL else { return .failure(.missingFile) }.",
+    telemetry: true,
     effort: "XS",
   },
 ];
 
-const priorityColors: Record<string, { bg: string; color: string }> = {
-  critical: { bg: "rgba(239,68,68,0.12)", color: "#f87171" },
-  high: { bg: "rgba(251,146,60,0.12)", color: "#fb923c" },
-  medium: { bg: "rgba(250,204,21,0.1)", color: "#facc15" },
+const priorityColor: Record<string, string> = {
+  critical: "#ef4444",
+  high: "#f97316",
+  medium: "#eab308",
 };
 
 export default function EngineeringSignals() {
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <div
-            className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 px-3 py-1 rounded-full"
-            style={{
-              color: "#818cf8",
-              background: "rgba(99,102,241,0.1)",
-              border: "1px solid rgba(99,102,241,0.2)",
-            }}
-          >
-            Engineering intelligence
+    <section className="py-24 px-6" style={{ borderTop: "1px solid #1f1f1f" }}>
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+          <div>
+            <div
+              className="text-xs font-medium mb-4"
+              style={{ color: "#a3e635", letterSpacing: "0.1em", textTransform: "uppercase" }}
+            >
+              Engineering intelligence
+            </div>
+            <h2
+              className="font-bold tracking-tight"
+              style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.03em", lineHeight: 1.05 }}
+            >
+              Not just &ldquo;users are unhappy.&rdquo;
+              <br />
+              Here&apos;s the actual fix.
+            </h2>
           </div>
-          <h2
-            className="text-3xl md:text-5xl font-bold tracking-tight text-gradient"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            Not just &ldquo;users are unhappy.&rdquo;
-            <br />
-            <span className="text-gradient-accent">Here&apos;s the fix.</span>
-          </h2>
-          <p
-            className="mt-4 text-lg max-w-2xl mx-auto"
-            style={{ color: "var(--foreground-muted)" }}
-          >
-            Lumerial bridges the gap between user pain and engineering action. For each
-            theme it detects, it generates a concrete, code-level engineering suggestion
-            your team can act on immediately.
+          <p className="text-sm max-w-xs" style={{ color: "#555", lineHeight: 1.7 }}>
+            For every pain theme Lumerial detects, it generates a prioritized engineering signal your team can act on.
           </p>
         </div>
 
-        <div className="flex flex-col gap-4">
-          {suggestions.map((s) => {
-            const pc = priorityColors[s.priority];
-            return (
-              <div
-                key={s.theme}
-                className="group rounded-2xl p-5 transition-all duration-300 glass"
-                style={{ border: "1px solid var(--border)" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(99,102,241,0.25)";
-                  e.currentTarget.style.boxShadow =
-                    "0 0 30px rgba(99,102,241,0.06)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "var(--border)";
-                  e.currentTarget.style.boxShadow = "";
-                }}
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-4">
-                  {/* Left: signal summary */}
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full font-medium"
-                        style={{ background: pc.bg, color: pc.color }}
-                      >
-                        {s.priority}
-                      </span>
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{
-                          background: "var(--surface)",
-                          color: "var(--foreground-muted)",
-                          border: "1px solid var(--border)",
-                        }}
-                      >
-                        {s.volume}
-                      </span>
-                      <span
-                        className="text-xs"
-                        style={{ color: "var(--foreground-muted)" }}
-                      >
-                        via {s.source}
-                      </span>
-                    </div>
-                    <h3
-                      className="text-base font-semibold mb-1"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {s.theme}
-                    </h3>
-                  </div>
-
-                  {/* Effort badge */}
-                  <div
-                    className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold"
-                    style={{
-                      background: "rgba(99,102,241,0.12)",
-                      color: "#818cf8",
-                      border: "1px solid rgba(99,102,241,0.2)",
-                    }}
-                    title="Estimated effort"
-                  >
-                    {s.effort}
-                  </div>
-                </div>
-
-                {/* Engineering suggestion */}
-                <div
-                  className="mt-4 rounded-xl px-4 py-3 flex items-start gap-3"
-                  style={{
-                    background: "rgba(99,102,241,0.06)",
-                    border: "1px solid rgba(99,102,241,0.15)",
-                  }}
-                >
-                  <svg
-                    className="shrink-0 mt-0.5"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#818cf8"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="16 18 22 12 16 6" />
-                    <polyline points="8 6 2 12 8 18" />
-                  </svg>
-                  <p
-                    className="text-sm leading-relaxed font-mono"
-                    style={{ color: "var(--foreground-muted)" }}
-                  >
-                    {s.engineeringSuggestion}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        {/* Technical explainer */}
+        <div
+          className="mb-10 flex items-start gap-3 px-4 py-3"
+          style={{ border: "1px solid #1f1f1f", borderRadius: 4, background: "#0f0f0f" }}
+        >
+          <span className="text-xs font-bold shrink-0 mt-0.5" style={{ color: "#333", letterSpacing: "0.05em" }}>HOW</span>
+          <p className="text-xs leading-relaxed" style={{ color: "#555" }}>
+            <span style={{ color: "#888" }}>Input:</span> review text, ticket text, forum threads — optionally Sentry errors and Datadog traces.{" "}
+            <span style={{ color: "#888" }}>Output:</span> themes ranked by volume × recency × customer tier, each mapped to a likely engineering area.{" "}
+            <span style={{ color: "#555" }}>Not an LLM summarizer — structured signal extraction with source attribution.</span>
+          </p>
         </div>
 
-        <p
-          className="text-center text-sm mt-8"
-          style={{ color: "var(--foreground-muted)" }}
-        >
-          Engineering suggestions are generated by analyzing signal patterns, your tech stack, and common resolution patterns across similar products.
-        </p>
+        {/* Signal cards */}
+        <div className="flex flex-col" style={{ border: "1px solid #1f1f1f", borderRadius: 4 }}>
+          {signals.map((s, i) => (
+            <div
+              key={s.theme}
+              className="p-6 transition-colors duration-150"
+              style={{ borderBottom: i < signals.length - 1 ? "1px solid #1f1f1f" : "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#111")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            >
+              <div className="flex flex-col md:flex-row md:items-start gap-5">
+                <div className="flex-1">
+                  {/* Meta row */}
+                  <div className="flex flex-wrap items-center gap-3 mb-3">
+                    <span
+                      className="text-xs font-bold"
+                      style={{ color: priorityColor[s.priority], letterSpacing: "0.05em", textTransform: "uppercase" }}
+                    >
+                      {s.priority}
+                    </span>
+                    <span className="text-xs" style={{ color: "#555" }}>
+                      {s.volume} · {s.window}
+                    </span>
+                    {s.sources.map((src) => (
+                      <span key={src} className="text-xs" style={{ color: "#333" }}>
+                        [{src}]
+                      </span>
+                    ))}
+                    {/* Telemetry badge */}
+                    <span
+                      className="text-xs px-2 py-0.5 font-medium"
+                      style={{
+                        borderRadius: 4,
+                        background: s.telemetry ? "rgba(163,230,53,0.08)" : "rgba(255,255,255,0.03)",
+                        border: s.telemetry ? "1px solid rgba(163,230,53,0.25)" : "1px solid #1f1f1f",
+                        color: s.telemetry ? "#a3e635" : "#333",
+                      }}
+                    >
+                      {s.telemetry ? "Telemetry-backed" : "Pattern only"}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold mb-3">{s.theme}</h3>
+
+                  {/* Pattern block */}
+                  <p className="text-sm leading-relaxed mb-3" style={{ color: "#666" }}>
+                    {s.pattern}
+                  </p>
+
+                  {/* Suggestion block */}
+                  <div
+                    className="flex items-start gap-3 p-4"
+                    style={{
+                      background: "#0c0c0c",
+                      border: s.telemetry ? "1px solid rgba(163,230,53,0.2)" : "1px solid #1f1f1f",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <span
+                      className="text-xs font-bold mt-0.5 shrink-0"
+                      style={{ color: s.telemetry ? "#a3e635" : "#444", letterSpacing: "0.05em" }}
+                    >
+                      {s.telemetry ? "FIX" : "AREA"}
+                    </span>
+                    <p className="text-sm leading-relaxed" style={{ color: "#888" }}>
+                      {s.suggestion}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Effort */}
+                <div
+                  className="flex items-center justify-center shrink-0 text-xs font-bold"
+                  style={{ width: 36, height: 36, border: "1px solid #1f1f1f", borderRadius: 4, color: "#555" }}
+                  title="Estimated effort"
+                >
+                  {s.effort}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Legend */}
+        <div className="mt-4 flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <span
+              className="text-xs px-2 py-0.5"
+              style={{ border: "1px solid rgba(163,230,53,0.25)", color: "#a3e635", borderRadius: 4 }}
+            >
+              Telemetry-backed
+            </span>
+            <span className="text-xs" style={{ color: "#444" }}>
+              Sentry / Datadog connected — stack-level diagnosis
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span
+              className="text-xs px-2 py-0.5"
+              style={{ border: "1px solid #1f1f1f", color: "#333", borderRadius: 4 }}
+            >
+              Pattern only
+            </span>
+            <span className="text-xs" style={{ color: "#444" }}>
+              Text signal — points to the likely area
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

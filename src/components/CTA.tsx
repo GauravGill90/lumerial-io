@@ -6,62 +6,40 @@ export default function CTA() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) setSubmitted(true);
-  };
-
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-3xl mx-auto text-center">
+    <section className="py-24 px-6" style={{ borderTop: "1px solid #1f1f1f" }}>
+      <div className="max-w-6xl mx-auto">
         <div
-          className="relative rounded-3xl p-12 overflow-hidden"
-          style={{
-            background: "rgba(99,102,241,0.07)",
-            border: "1px solid rgba(99,102,241,0.25)",
-            boxShadow: "0 0 80px rgba(99,102,241,0.1)",
-          }}
+          className="p-12 md:p-16"
+          style={{ background: "#111", border: "1px solid #1f1f1f", borderRadius: 4 }}
         >
-          {/* Glow */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 100%)",
-            }}
-          />
-
-          <div className="relative z-10">
+          <div className="max-w-xl">
+            <div className="text-xs font-medium mb-6" style={{ color: "#a3e635", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              Early access
+            </div>
             <h2
-              className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
-              style={{ fontFamily: "var(--font-heading)" }}
+              className="font-bold tracking-tight mb-4"
+              style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.03em", lineHeight: 1.05 }}
             >
-              <span className="text-gradient">Stop guessing.</span>
+              Stop guessing.
               <br />
-              <span className="text-gradient-accent">Start knowing.</span>
+              Start knowing.
             </h2>
-            <p className="text-lg mb-8" style={{ color: "var(--foreground-muted)" }}>
-              Join 200+ product teams on the waitlist. Early access opens next quarter.
+            <p className="text-base mb-8" style={{ color: "#555", lineHeight: 1.7 }}>
+              We&apos;re in private beta. Drop your email and we&apos;ll reach out when your spot is ready.
             </p>
 
             {submitted ? (
               <div
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium"
-                style={{
-                  background: "rgba(74,222,128,0.1)",
-                  border: "1px solid rgba(74,222,128,0.3)",
-                  color: "#4ade80",
-                }}
+                className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3"
+                style={{ border: "1px solid #a3e635", color: "#a3e635", borderRadius: 4 }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                You&apos;re on the list — we&apos;ll be in touch.
+                <span style={{ fontWeight: 900 }}>+</span> You&apos;re on the list — we&apos;ll be in touch.
               </div>
             ) : (
               <form
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+                onSubmit={(e) => { e.preventDefault(); if (email) setSubmitted(true); }}
+                className="flex gap-2"
               >
                 <input
                   type="email"
@@ -69,46 +47,28 @@ export default function CTA() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@company.com"
                   required
-                  className="flex-1 px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
+                  className="flex-1 text-sm px-4 py-3 outline-none transition-colors duration-150"
                   style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid var(--border-strong)",
-                    color: "var(--foreground)",
+                    background: "#0c0c0c",
+                    border: "1px solid #1f1f1f",
+                    color: "#fff",
+                    borderRadius: 4,
+                    maxWidth: 300,
                   }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "rgba(99,102,241,0.5)";
-                    e.target.style.boxShadow = "0 0 0 3px rgba(99,102,241,0.1)";
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "var(--border-strong)";
-                    e.target.style.boxShadow = "";
-                  }}
+                  onFocus={(e) => (e.target.style.borderColor = "#a3e635")}
+                  onBlur={(e) => (e.target.style.borderColor = "#1f1f1f")}
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 whitespace-nowrap"
-                  style={{
-                    background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-                    color: "#fff",
-                    boxShadow: "0 0 20px rgba(99,102,241,0.3)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 35px rgba(99,102,241,0.5)";
-                    e.currentTarget.style.transform = "translateY(-1px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 20px rgba(99,102,241,0.3)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                  }}
+                  className="text-sm font-bold px-5 py-3 transition-colors duration-150 whitespace-nowrap"
+                  style={{ background: "#a3e635", color: "#0c0c0c", border: "none", borderRadius: 4, cursor: "pointer" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#bef264")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#a3e635")}
                 >
-                  Join the waitlist
+                  Join waitlist
                 </button>
               </form>
             )}
-
-            <p className="mt-4 text-xs" style={{ color: "var(--foreground-muted)" }}>
-              No spam. Unsubscribe anytime.
-            </p>
           </div>
         </div>
       </div>
