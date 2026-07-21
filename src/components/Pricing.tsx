@@ -36,75 +36,61 @@ export default function Pricing() {
   const [annual, setAnnual] = useState(true);
 
   return (
-    <section id="pricing" className="py-24 px-6" style={{ borderTop: "1px solid #1f1f1f" }}>
+    <section id="pricing" className="py-24 px-6" style={{ borderTop: "1px solid #e8e8e8" }}>
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <div className="text-xs font-medium mb-4" style={{ color: "#a3e635", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <div className="text-xs font-semibold mb-4" style={{ color: "#aaa", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               Pricing
             </div>
             <h2
-              className="font-bold tracking-tight"
+              className="font-bold tracking-tight text-[#0a0a0a]"
               style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.03em", lineHeight: 1.05 }}
             >
               Simple, transparent pricing.
             </h2>
           </div>
 
-          {/* Toggle */}
-          <div
-            className="inline-flex"
-            style={{ border: "1px solid #1f1f1f", borderRadius: 4, padding: 4 }}
-          >
+          <div className="inline-flex" style={{ border: "1px solid #e8e8e8", borderRadius: 4, padding: 4 }}>
             {[["Monthly", false], ["Annual", true]].map(([label, val]) => (
               <button
                 key={String(label)}
                 onClick={() => setAnnual(val as boolean)}
                 className="text-xs font-medium px-4 py-2 transition-colors duration-150 flex items-center gap-2"
                 style={{
-                  background: annual === val ? "#1f1f1f" : "transparent",
-                  color: annual === val ? "#fff" : "#555",
+                  background: annual === val ? "#0a0a0a" : "transparent",
+                  color: annual === val ? "#fff" : "#aaa",
                   borderRadius: 2,
                   border: "none",
                   cursor: "pointer",
                 }}
               >
                 {label}
-                {val && (
-                  <span style={{ color: "#a3e635", fontSize: 10, fontWeight: 700 }}>–20%</span>
-                )}
+                {val && <span style={{ color: annual ? "#fff" : "#0a0a0a", fontSize: 10, fontWeight: 700, opacity: 0.6 }}>–20%</span>}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Plans */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-3"
-          style={{ border: "1px solid #1f1f1f", borderRadius: 4 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ border: "1px solid #e8e8e8", borderRadius: 4 }}>
           {plans.map((plan, i) => (
             <div
               key={plan.name}
               className="p-8 flex flex-col"
               style={{
-                borderRight: i < 2 ? "1px solid #1f1f1f" : "none",
-                background: plan.highlight ? "#111" : "transparent",
+                borderRight: i < 2 ? "1px solid #e8e8e8" : "none",
+                background: plan.highlight ? "#0a0a0a" : "transparent",
               }}
             >
               {plan.highlight && (
-                <div
-                  className="text-xs font-bold mb-4 self-start px-2 py-1"
-                  style={{ background: "#a3e635", color: "#0c0c0c", borderRadius: 4, letterSpacing: "0.05em" }}
-                >
+                <div className="text-xs font-bold mb-4 self-start px-2 py-1 bg-white text-[#0a0a0a]" style={{ borderRadius: 4, letterSpacing: "0.05em" }}>
                   MOST POPULAR
                 </div>
               )}
 
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-1">{plan.name}</h3>
-                <p className="text-sm" style={{ color: "#555" }}>{plan.description}</p>
+                <h3 className="text-lg font-bold mb-1" style={{ color: plan.highlight ? "#fff" : "#0a0a0a" }}>{plan.name}</h3>
+                <p className="text-sm" style={{ color: plan.highlight ? "#888" : "#777" }}>{plan.description}</p>
               </div>
 
               <div className="mb-8">
@@ -112,30 +98,23 @@ export default function Pricing() {
                   <>
                     <span
                       className="font-bold tracking-tight"
-                      style={{ fontSize: 40, letterSpacing: "-0.03em" }}
+                      style={{ fontSize: 40, letterSpacing: "-0.03em", color: plan.highlight ? "#fff" : "#0a0a0a" }}
                     >
                       ${annual ? plan.annual : plan.monthly}
                     </span>
-                    <span className="text-sm ml-1" style={{ color: "#555" }}>/mo</span>
-                    {annual && (
-                      <div className="text-xs mt-1" style={{ color: "#555" }}>billed annually</div>
-                    )}
+                    <span className="text-sm ml-1" style={{ color: plan.highlight ? "#888" : "#aaa" }}>/mo</span>
+                    {annual && <div className="text-xs mt-1" style={{ color: plan.highlight ? "#888" : "#aaa" }}>billed annually</div>}
                   </>
                 ) : (
-                  <span
-                    className="font-bold tracking-tight"
-                    style={{ fontSize: 40, letterSpacing: "-0.03em" }}
-                  >
-                    Custom
-                  </span>
+                  <span className="font-bold tracking-tight" style={{ fontSize: 40, letterSpacing: "-0.03em", color: "#0a0a0a" }}>Custom</span>
                 )}
               </div>
 
               <ul className="flex flex-col gap-3 flex-1 mb-8">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-center gap-2.5 text-sm">
-                    <span style={{ color: "#a3e635", fontWeight: 700 }}>+</span>
-                    <span style={{ color: "#888" }}>{f}</span>
+                    <span style={{ color: plan.highlight ? "#fff" : "#0a0a0a", fontWeight: 700 }}>+</span>
+                    <span style={{ color: plan.highlight ? "#888" : "#777" }}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -145,16 +124,16 @@ export default function Pricing() {
                 className="block text-center py-3 text-sm font-bold transition-colors duration-150"
                 style={
                   plan.highlight
-                    ? { background: "#a3e635", color: "#0c0c0c", borderRadius: 4 }
-                    : { border: "1px solid #1f1f1f", color: "#fff", borderRadius: 4 }
+                    ? { background: "#fff", color: "#0a0a0a", borderRadius: 4 }
+                    : { border: "1px solid #e8e8e8", color: "#0a0a0a", borderRadius: 4 }
                 }
                 onMouseEnter={(e) => {
-                  if (plan.highlight) e.currentTarget.style.background = "#bef264";
-                  else e.currentTarget.style.borderColor = "#2a2a2a";
+                  if (plan.highlight) e.currentTarget.style.background = "#e8e8e8";
+                  else { e.currentTarget.style.background = "#0a0a0a"; e.currentTarget.style.color = "#fff"; }
                 }}
                 onMouseLeave={(e) => {
-                  if (plan.highlight) e.currentTarget.style.background = "#a3e635";
-                  else e.currentTarget.style.borderColor = "#1f1f1f";
+                  if (plan.highlight) e.currentTarget.style.background = "#fff";
+                  else { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#0a0a0a"; }
                 }}
               >
                 {plan.cta}
@@ -163,7 +142,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="text-center text-sm mt-6" style={{ color: "#555" }}>
+        <p className="text-center text-sm mt-6" style={{ color: "#aaa" }}>
           14-day free trial on all plans. No credit card required.
         </p>
       </div>

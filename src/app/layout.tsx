@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#0c0c0c] text-white">
+      <body className="min-h-full flex flex-col bg-white text-[#0a0a0a]">
         {children}
       </body>
     </html>
