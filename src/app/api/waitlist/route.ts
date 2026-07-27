@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const NOTIFY_EMAIL = process.env.WAITLIST_NOTIFY_EMAIL ?? "ggill@armstrongfluidtechnology.com";
+const NOTIFY_EMAIL = process.env.WAITLIST_NOTIFY_EMAIL ?? "hello@lumerial.io";
 const FROM = "Lumerial <onboarding@resend.dev>";
 
 export async function POST(req: Request) {
