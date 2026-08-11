@@ -9,6 +9,15 @@ export type BlogPostMeta = {
 
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: "from-review-to-fix-how-fast-lumerial-moves",
+    title: "From Review to Fix: How Fast Lumerial Actually Moves",
+    subtitle:
+      "Most of the delay between a complaint and a fix is relaying and reproducing, not coding. Connecting a repo is what lets Lumerial skip straight to a grounded diagnosis.",
+    category: "Engineering",
+    displayDate: "August 11, 2026",
+    readingTime: "5 min read",
+  },
+  {
     slug: "your-users-already-told-you-whats-broken",
     title: "Your Users Already Told You What's Broken",
     subtitle:
