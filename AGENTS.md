@@ -15,6 +15,7 @@ Landing page for Lumerial — a product signal intelligence tool that aggregates
 - **Tailwind CSS** — utility classes + inline styles for one-off values
 - **Phosphor Icons** (`@phosphor-icons/react`) — ESM-only, every file importing it **must** have `"use client"` at the top
 - **Resend** — waitlist email capture via `/api/waitlist`
+- **Vercel Analytics** (`@vercel/analytics`) — pageviews + Web Vitals via `<Analytics />` in `src/app/layout.tsx`. Requires enabling Web Analytics for this project in the Vercel dashboard (Project → Analytics) before data starts showing up — the component itself no-ops until that's on.
 - **Vercel** — auto-deploys on push to `main`
 
 ## Design system
