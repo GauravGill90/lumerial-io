@@ -24,16 +24,20 @@ export default function Navbar() {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {["Features", "How it works"].map((item) => (
+          {[
+            { label: "Features", href: "/#features" },
+            { label: "How it works", href: "/#how-it-works" },
+            { label: "Blogs", href: "/blogs" },
+          ].map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+              key={item.label}
+              href={item.href}
               className="text-sm transition-colors duration-150"
               style={{ color: "#666" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#0a0a0a")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>

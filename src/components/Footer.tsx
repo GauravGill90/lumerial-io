@@ -14,9 +14,9 @@ export default function Footer() {
 
           <div className="flex flex-wrap gap-12">
             {[
-              { heading: "Product", links: ["Features", "Changelog", "Roadmap"] },
-              { heading: "Company", links: ["About", "Blog", "Contact"] },
-              { heading: "Legal", links: ["Privacy", "Terms", "Security"] },
+              { heading: "Product", links: [{ label: "Features", href: "#features" }, { label: "Changelog", href: "#" }, { label: "Roadmap", href: "#" }] },
+              { heading: "Company", links: [{ label: "About", href: "#" }, { label: "Blogs", href: "/blogs" }, { label: "Contact", href: "#" }] },
+              { heading: "Legal", links: [{ label: "Privacy", href: "#" }, { label: "Terms", href: "#" }, { label: "Security", href: "#" }] },
             ].map((col) => (
               <div key={col.heading}>
                 <div className="text-xs font-bold uppercase mb-4" style={{ color: "#999", letterSpacing: "0.1em" }}>
@@ -24,15 +24,15 @@ export default function Footer() {
                 </div>
                 <ul className="flex flex-col gap-3">
                   {col.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#"
+                        href={link.href}
                         className="text-sm transition-colors duration-150"
                         style={{ color: "#666" }}
                         onMouseEnter={(e) => (e.currentTarget.style.color = "#0a0a0a")}
                         onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}

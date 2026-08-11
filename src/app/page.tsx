@@ -4,6 +4,7 @@ import EngineeringSignals from "@/components/EngineeringSignals";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import CTA from "@/components/CTA";
+import BlogTeaser from "@/components/BlogTeaser";
 import Footer from "@/components/Footer";
 
 const jsonLd = {
@@ -115,6 +116,7 @@ export default function Home() {
         <Features />
         <HowItWorks />
         <CTA />
+        <BlogTeaser />
       </main>
       <Footer />
     </>
