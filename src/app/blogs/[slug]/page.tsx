@@ -22,9 +22,35 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return {};
+
+  const url = `https://lumerial.io/blogs/${post.slug}`;
+  const title = `${post.title} — Lumerial`;
+
   return {
-    title: `${post.title} — Lumerial`,
+    title,
     description: post.subtitle,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description: post.subtitle,
+      url,
+      siteName: "Lumerial",
+      type: "article",
+      images: [
+        {
+          url: "/lumerial-linkedin.png",
+          width: 800,
+          height: 800,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: post.subtitle,
+      images: ["/lumerial-linkedin.png"],
+    },
   };
 }
 
