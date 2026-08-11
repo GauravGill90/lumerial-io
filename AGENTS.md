@@ -36,6 +36,16 @@ Landing page for Lumerial — a product signal intelligence tool that aggregates
 - Hover states use `onMouseEnter`/`onMouseLeave` inline (not Tailwind `hover:`) for fine-grained color control
 - Section headers follow the pattern: yellow uppercase label → large bold heading
 
+## Metadata & link previews
+
+**Every real, public-facing page must set its own `openGraph`/`twitter` metadata — not just `title`/`description`.** Next.js merges a page's `generateMetadata`/`metadata` with the parent layout's *per top-level key*, not per-field: if a page omits `openGraph` entirely, it inherits the root layout's `openGraph` object wholesale (title, description, url, image — all of it), not just the missing pieces. A page with only `title`/`description` set still gets the *root layout's* Slack/LinkedIn/Twitter preview, not its own — this has bitten this project twice already (`/blogs/[slug]`, then `/blogs` and `/case-studies/bitwarden`).
+
+When adding a new page meant to be shared (a blog post, a case study, any new top-level route with real content):
+- Set `title`, `description`, `alternates.canonical`, `openGraph` (`title`, `description`, `url`, `siteName: "Lumerial"`, `type`, `images`), and `twitter` (`card: "summary_large_image"`, `title`, `description`, `images`) — see `src/app/blogs/[slug]/page.tsx` or `src/app/case-studies/bitwarden/page.tsx` for the pattern.
+- Reuse `/lumerial-linkedin.png` (800×800) as the image unless the page has its own dedicated art.
+- `url` must be that page's own real URL, not the site root.
+- Internal/dev-only pages with no real content to share (`/preview`, `/logo-preview` — design-review mockups, no Navbar/Footer) are exempt; they're not meant to be linked externally.
+
 ## Key files
 
 | File | Purpose |
