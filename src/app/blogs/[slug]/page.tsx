@@ -6,10 +6,12 @@ import Footer from "@/components/Footer";
 import { blogPosts, getBlogPost } from "@/lib/blog-posts";
 import BlogPostUsersAlreadyToldYou from "@/components/BlogPostUsersAlreadyToldYou";
 import BlogPostFromReviewToFix from "@/components/BlogPostFromReviewToFix";
+import BlogPostCostOfNoTicket from "@/components/BlogPostCostOfNoTicket";
 
 const postComponents: Record<string, ComponentType> = {
   "your-users-already-told-you-whats-broken": BlogPostUsersAlreadyToldYou,
   "from-review-to-fix-how-fast-lumerial-moves": BlogPostFromReviewToFix,
+  "the-cost-of-a-bug-nobody-filed-a-ticket-for": BlogPostCostOfNoTicket,
 };
 
 export function generateStaticParams() {

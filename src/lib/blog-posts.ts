@@ -9,6 +9,15 @@ export type BlogPostMeta = {
 
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: "the-cost-of-a-bug-nobody-filed-a-ticket-for",
+    title: "The Cost of a Bug Nobody Filed a Ticket For",
+    subtitle:
+      "Ticket-driven backlogs only see the bugs someone bothered to escalate. Review-driven ranking catches the ones costing you users in silence.",
+    category: "Product",
+    displayDate: "August 12, 2026",
+    readingTime: "4 min read",
+  },
+  {
     slug: "from-review-to-fix-how-fast-lumerial-moves",
     title: "From Review to Fix: How Fast Lumerial Actually Moves",
     subtitle:
