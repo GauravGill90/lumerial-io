@@ -9,6 +9,15 @@ export type BlogPostMeta = {
 
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: "from-signal-to-revenue-catching-issues-before-the-backlog",
+    title: "From Signal to Revenue: Catching Issues Before They Hit the Backlog",
+    subtitle:
+      "Reviews and support signals are a leading indicator, not background noise. Catching a theme while it's still small is the difference between a quick fix and a backlog item everyone already resents.",
+    category: "Product",
+    displayDate: "August 12, 2026",
+    readingTime: "4 min read",
+  },
+  {
     slug: "the-cost-of-a-bug-nobody-filed-a-ticket-for",
     title: "The Cost of a Bug Nobody Filed a Ticket For",
     subtitle:
