@@ -8,12 +8,14 @@ import BlogPostUsersAlreadyToldYou from "@/components/BlogPostUsersAlreadyToldYo
 import BlogPostFromReviewToFix from "@/components/BlogPostFromReviewToFix";
 import BlogPostCostOfNoTicket from "@/components/BlogPostCostOfNoTicket";
 import BlogPostSignalsToRevenue from "@/components/BlogPostSignalsToRevenue";
+import BlogPostDuckDuckGoCaseStudy from "@/components/BlogPostDuckDuckGoCaseStudy";
 
 const postComponents: Record<string, ComponentType> = {
   "your-users-already-told-you-whats-broken": BlogPostUsersAlreadyToldYou,
   "from-review-to-fix-how-fast-lumerial-moves": BlogPostFromReviewToFix,
   "the-cost-of-a-bug-nobody-filed-a-ticket-for": BlogPostCostOfNoTicket,
   "from-signal-to-revenue-catching-issues-before-the-backlog": BlogPostSignalsToRevenue,
+  "duckduckgo-real-reviews-case-study": BlogPostDuckDuckGoCaseStudy,
 };
 
 export function generateStaticParams() {

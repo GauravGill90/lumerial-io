@@ -9,6 +9,15 @@ export type BlogPostMeta = {
 
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: "duckduckgo-real-reviews-case-study",
+    title: "We Pointed Lumerial at DuckDuckGo's Real Reviews. Here's What We Found.",
+    subtitle:
+      "2,180 real Google Play and App Store reviews, clustered into six themes, checked line-by-line against DuckDuckGo's own open-source Android and iOS repositories — four confirmed in code, two we couldn't.",
+    category: "Case Study",
+    displayDate: "August 17, 2026",
+    readingTime: "9 min read",
+  },
+  {
     slug: "from-signal-to-revenue-catching-issues-before-the-backlog",
     title: "From Signal to Revenue: Catching Issues Before They Hit the Backlog",
     subtitle:
