@@ -16,7 +16,7 @@ const jsonLd = {
       "name": "Lumerial",
       "url": "https://lumerial.io",
       "description":
-        "Lumerial is a product signal intelligence platform that aggregates app reviews, support tickets, forum threads, and error telemetry into ranked engineering fix suggestions.",
+        "Lumerial turns signals into fixes: it aggregates app reviews, support tickets, forum threads, and error telemetry into ranked engineering fix suggestions.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "offers": {
@@ -58,7 +58,7 @@ const jsonLd = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "Lumerial is a product signal intelligence platform. It aggregates user feedback from App Store reviews, Google Play, Zendesk, Intercom, Reddit, Sentry, and 20+ other sources, then uses semantic analysis to surface ranked engineering fix suggestions — not just summaries.",
+              "Lumerial turns signals into fixes. It aggregates user feedback from App Store reviews, Google Play, Zendesk, Intercom, Reddit, Sentry, and 20+ other sources, then uses semantic analysis to surface ranked engineering fix suggestions — not just summaries.",
           },
         },
         {

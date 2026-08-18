@@ -6,7 +6,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Project: lumerial.io
 
-Landing page for Lumerial — a product signal intelligence tool that aggregates app reviews, support tickets, forum threads, and telemetry into engineering-level fix suggestions.
+Landing page for Lumerial — signals to fixes. It aggregates app reviews, support tickets, forum threads, and telemetry into engineering-level fix suggestions.
 
 ## Stack
 

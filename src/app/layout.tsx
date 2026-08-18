@@ -10,14 +10,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Lumerial — Product Signal Intelligence",
+  title: "Lumerial — Signals to Fixes",
   description:
-    "Lumerial aggregates app reviews, support tickets, forum threads, and telemetry into a single intelligence layer — then surfaces exactly what users need and what engineers should fix first.",
+    "Lumerial aggregates app reviews, support tickets, forum threads, and telemetry — then turns them into ranked, engineering-ready fixes.",
   metadataBase: new URL("https://lumerial.io"),
   openGraph: {
-    title: "Lumerial — Product Signal Intelligence",
+    title: "Lumerial — Signals to Fixes",
     description:
-      "Aggregate signals from App Store reviews, Zendesk tickets, Reddit, and Sentry into one unified layer. Get ranked engineering fix suggestions, not just summaries.",
+      "Aggregate signals from App Store reviews, Zendesk tickets, Reddit, and Sentry into one place. Get ranked engineering fix suggestions, not just summaries.",
     url: "https://lumerial.io",
     siteName: "Lumerial",
     type: "website",
@@ -26,28 +26,26 @@ export const metadata: Metadata = {
         url: "/lumerial-linkedin.png",
         width: 800,
         height: 800,
-        alt: "Lumerial — Product Signal Intelligence",
+        alt: "Lumerial — Signals to Fixes",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lumerial — Product Signal Intelligence",
+    title: "Lumerial — Signals to Fixes",
     description:
-      "Stop guessing. Lumerial turns raw user feedback into ranked engineering signals your team can act on.",
+      "Stop guessing. Lumerial turns raw user feedback into ranked engineering fixes your team can act on.",
     images: ["/lumerial-linkedin.png"],
   },
   keywords: [
-    "product signal intelligence",
+    "signals to fixes",
     "app review aggregation",
     "user feedback analysis",
     "engineering fix suggestions",
     "product feedback tool",
     "app store review analysis",
-    "support ticket intelligence",
-    "product analytics",
+    "support ticket triage",
     "user feedback aggregator",
-    "Enterpret alternative",
   ],
   robots: {
     index: true,
