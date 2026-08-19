@@ -10,12 +10,12 @@ export type BlogPostMeta = {
 export const blogPosts: BlogPostMeta[] = [
   {
     slug: "duckduckgo-real-reviews-case-study",
-    title: "We Pointed Lumerial at DuckDuckGo's Real Reviews. Here's What We Found.",
+    title: "We Connected DuckDuckGo's Real App Store Listing to Focus",
     subtitle:
-      "2,180 real Google Play and App Store reviews, clustered into six themes, checked line-by-line against DuckDuckGo's own open-source Android and iOS repositories — four confirmed in code, two we couldn't.",
+      "A live Lumerial workspace, a real review source, and Focus's own ranking — no manual clustering. Seven themes came out, and DuckDuckGo's real GitHub activity backs up five of them.",
     category: "Case Study",
-    displayDate: "August 17, 2026",
-    readingTime: "9 min read",
+    displayDate: "August 19, 2026",
+    readingTime: "8 min read",
   },
   {
     slug: "from-signal-to-revenue-catching-issues-before-the-backlog",
