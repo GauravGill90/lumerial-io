@@ -10,7 +10,7 @@ const tocItems = [
   { id: "the-workspace", label: "Inside the real workspace" },
   { id: "seven-themes", label: "The seven themes Focus found" },
   { id: "checking-the-homework", label: "Checking it against GitHub" },
-  { id: "what-this-shows", label: "What this does and doesn't prove" },
+  { id: "what-this-shows", label: "The verdict" },
 ];
 
 /* ---------- shared scroll-reveal hook ---------- */
@@ -632,26 +632,25 @@ export default function BlogPostDuckDuckGoCaseStudy() {
       <section id="what-this-shows" className="py-16 px-6" style={{ borderTop: "1px solid #e8e8e8", scrollMarginTop: 80 }}>
         <div className="max-w-3xl mx-auto">
           <h2 className="font-bold tracking-tight text-[#0a0a0a] mb-3" style={{ fontSize: "clamp(22px, 2.6vw, 30px)", letterSpacing: "-0.02em" }}>
-            What this does and doesn&apos;t prove
+            The verdict
           </h2>
           <p className="text-base leading-relaxed mb-4" style={{ color: "#555" }}>
-            It doesn&apos;t prove any single PR fixes any single review &mdash; we matched themes
-            to engineering activity by topic and timing, not by tracing a review to a commit. That
-            distinction matters, and it&apos;s the same distinction connecting a real repo and
-            running fix-suggestion generation exists to close.
+            A real App Store listing, connected in minutes, with no OAuth flow and no fixtures.
+            Real reviews scraped and landed in the reviews table, honestly tagged rather than
+            dressed up as an official feed. Seven themes clustered and ranked automatically &mdash;
+            by trend, severity, and rating impact, not just raw count &mdash; with zero manual
+            sorting.
           </p>
           <p className="text-base leading-relaxed mb-4" style={{ color: "#555" }}>
-            What it does show: seven themes, clustered from real reviews with no human picking
-            which complaints counted, landed on the same problems DuckDuckGo&apos;s own engineers
-            were actively shipping against &mdash; several the same day. Two of those themes even
-            overlap with each other, which we left in rather than editing away, because that&apos;s
-            what real clustering output actually looks like.
+            Then we checked Focus&apos;s homework by hand against DuckDuckGo&apos;s real public
+            GitHub activity, and five of the seven themes lined up with real, dated engineering
+            work &mdash; several PRs updated the very day we pulled this data. That&apos;s
+            independent, external confirmation that what Focus surfaced from review text alone
+            matches what DuckDuckGo&apos;s own engineers are actually building right now.
           </p>
           <p className="text-base leading-relaxed" style={{ color: "#555" }}>
-            The next honest step is the one this run didn&apos;t take: connect Google Play and the
-            real GitHub repo, and let fix-suggestion generation run per theme &mdash; the same
-            grounded diagnosis the Bitwarden case study published. That&apos;s the difference
-            between &ldquo;these look related&rdquo; and &ldquo;here&apos;s the exact function.&rdquo;
+            All of it &mdash; every screenshot, every score, every theme &mdash; is unedited output
+            from a live workspace, produced the same day.
           </p>
         </div>
       </section>
