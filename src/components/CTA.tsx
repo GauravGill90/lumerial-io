@@ -72,6 +72,19 @@ export default function CTA() {
                 )}
               </form>
             )}
+
+            <p className="text-sm mt-6" style={{ color: "#666" }}>
+              Want deeper involvement?{" "}
+              <a
+                href="/design-partners"
+                className="font-medium transition-colors duration-150"
+                style={{ color: "#eab308" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#fbbf24")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#eab308")}
+              >
+                Apply as a design partner
+              </a>
+            </p>
           </div>
         </div>
       </div>

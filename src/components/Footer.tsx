@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="max-w-xs">
             <div className="text-sm font-bold mb-3 text-[#0a0a0a]">lumerial</div>
             <p className="text-sm leading-relaxed" style={{ color: "#666" }}>
-              Product signal intelligence for teams that care about what users actually need.
+              Signals to fixes, for teams that care about what users actually need.
             </p>
           </div>
 
